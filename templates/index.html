@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gemini App</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Welcome to the Gemini App</h1>
+    {% if current_user.is_authenticated %}
+    <p>
+      Hello, {{ current_user.id }}! <a href="{{ url_for('logout') }}">Logout</a>
+    </p>
+    <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+    {% else %}
+    <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+  </body>
+</html>

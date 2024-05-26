@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    <p>Ticker Information: {{ ticker }}</p>
+    <form method="post" action="{{ url_for('order') }}">
+      <label for="symbol">Symbol:</label>
+      <input type="text" id="symbol" name="symbol" required />
+      <br />
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount" required />
+      <br />
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price" required />
+      <br />
+      <label for="side">Side:</label>
+      <select id="side" name="side" required>
+        <option value="buy">Buy</option>
+        <option value="sell">Sell</option>
+      </select>
+      <br />
+      <input type="submit" value="Place Order" />
+    </form>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    {% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+    {% endfor %}
+  </body>
+</html>
