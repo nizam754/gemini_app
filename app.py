@@ -6,17 +6,22 @@ import hmac
 import hashlib
 import base64
 import json
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Change this to a real secret key
+app.secret_key = os.getenv('FLASK_SECRET_KEY', 'supersecretkey')  # Change this to a real secret key
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-API_KEY = 'your_api_key'
-API_SECRET = 'your_api_secret'.encode()
-BASE_URL = 'https://api.gemini.com/v1'
+API_KEY = os.getenv('API_KEY')
+API_SECRET = os.getenv('API_SECRET').encode()
+BASE_URL = os.getenv('BASE_URL')
 
 class User(UserMixin):
     def __init__(self, id):
