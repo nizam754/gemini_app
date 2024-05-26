@@ -16,7 +16,7 @@ COPY . .
 # Set environment variables (you should use secrets in a real application)
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_ENV=development  # Change to production for a real application
+ENV FLASK_ENV=development  
 
 # Expose the port the app runs on
 EXPOSE 5000
